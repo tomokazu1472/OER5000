@@ -1,0 +1,1588 @@
+/*
+ *	RailSim II Train Plugin
+ *	Copyright (c) 2025 maki
+ */
+
+PluginHeader{
+	RailSimVersion = 2.15;
+	PluginType = Train;
+	PluginName = "小田急5000形(先頭車)";
+	PluginAuthor = "maki";
+	IconTexture = "../common_maki/oer5000/icon1.png";
+	Description = "2020年に登場した小田急の通勤型電車です";
+}
+
+TrainInfo{
+	FrontLimit = 10.34;
+	TailLimit = -10.0;
+	MaxVelocity = 100.0;
+	MaxAcceleration = 3.3;
+	MaxDeceleration = 3.5;
+	DoorClosingTime = 7.0;
+}
+
+DefineSwitch "【電源設定】"{}
+
+DefineSwitch "電源(パンタグラフ)"{
+	GroupCommon = "電源";
+	Entry = "下降";
+	Entry = "上昇";
+}
+
+DefineSwitch ""{}
+
+DefineSwitch "【車両設定】"{}
+
+DefineSwitch "号車"{
+	Entry = "1号車 (小田原方)";
+	Entry = "10号車(新　宿方)";
+}
+
+DefineSwitch "編成"{
+	GroupCommon = "OER5000_編成";
+	Entry = "5051F";
+	Entry = "5052F";
+	Entry = "5053F";
+	Entry = "5054F";
+	Entry = "5055F";
+	Entry = "5056F";
+	Entry = "5057F";
+	Entry = "5058F";
+	Entry = "5059F";
+	Entry = "5060F";
+	Entry = "5061F";
+	Entry = "5062F";
+	Entry = "5063F";
+	Entry = "5064F";
+}
+
+DefineSwitch "種別"{
+	GroupCommon = "OER_種別";
+	Entry = "無表示";
+	Entry = "各駅停車";
+	Entry = "急　行";
+	Entry = "通勤急行";
+	Entry = "快速急行";
+}
+
+DefineSwitch "行先"{
+	GroupCommon = "OER_行先";
+	Entry = "無表示";
+	Entry = "新　宿";
+	Entry = "新百合ヶ丘";
+	Entry = "相模大野";
+	Entry = "本厚木";
+	Entry = "伊勢原";
+	Entry = "新松田";
+	Entry = "小田原";
+	Entry = "藤　沢";
+	Entry = "片瀬江ノ島";
+	Entry = "唐木田";
+	Entry = "回　送";
+	Entry = "実車訓練中";
+}
+
+DefineSwitch "次駅表示"{
+	GroupCommon = "OER_次駅";
+	Entry = "なし";
+	Entry = "次は　新宿";
+	Entry = "次は　南新宿";
+	Entry = "次は　参宮橋";
+	Entry = "次は　代々木八幡";
+	Entry = "次は　代々木上原";
+	Entry = "次は　東北沢";
+	Entry = "次は　下北沢";
+	Entry = "次は　世田谷代田";
+	Entry = "次は　梅ヶ丘";
+	Entry = "次は　豪徳寺";
+	Entry = "次は　経堂";
+	Entry = "次は　千歳船橋";
+	Entry = "次は　祖師ヶ谷大蔵";
+	Entry = "次は　成城学園前";
+	Entry = "次は　喜多見";
+	Entry = "次は　狛江";
+	Entry = "次は　和泉多摩川";
+	Entry = "次は　登戸";
+	Entry = "次は　向ヶ丘遊園";
+	Entry = "次は　生田";
+	Entry = "次は　読売ランド前";
+	Entry = "次は　百合ヶ丘";
+	Entry = "次は　新百合ヶ丘";
+	Entry = "次は　柿生";
+	Entry = "次は　鶴川";
+	Entry = "次は　玉川学園前";
+	Entry = "次は　町田";
+	Entry = "次は　相模大野";
+	Entry = "次は　小田急相模原";
+	Entry = "次は　相武台前";
+	Entry = "次は　座間";
+	Entry = "次は　海老名";
+	Entry = "次は　厚木";
+	Entry = "次は　本厚木";
+	Entry = "次は　愛甲石田";
+	Entry = "次は　伊勢原";
+	Entry = "次は　鶴巻温泉";
+	Entry = "次は　東海大学前";
+	Entry = "次は　秦野";
+	Entry = "次は　渋沢";
+	Entry = "次は　新松田";
+	Entry = "次は　開成";
+	Entry = "次は　小田原";
+	Entry = "次は　中央林間";
+	Entry = "次は　南林間";
+	Entry = "次は　大和";
+	Entry = "次は　長後";
+	Entry = "次は　湘南台";
+	Entry = "次は　藤沢";
+	Entry = "次は　片瀬江ノ島";
+	Entry = "次は　五月台";
+	Entry = "次は　栗平";
+	Entry = "次は　黒川";
+	Entry = "次は　はるひ野";
+	Entry = "次は　小田急永山";
+	Entry = "次は　小田急多摩センター";
+	Entry = "次は　唐木田";
+	Entry = "";
+	Entry = "";
+	Entry = "";
+}
+
+DefineSwitch "ドア"{
+	GroupCommon = "ドア";
+	Entry = "自動";
+	Entry = "進行方向右側開";
+	Entry = "進行方向左側開";
+	Entry = "全開";
+}
+
+DefineSwitch "ライト"{
+	GroupCommon = "ライト";
+	Entry = "自動";
+	Entry = "自動(ハイビーム)";
+	Entry = "入替";
+	Entry = "消灯";
+}
+
+DefineSwitch "室内灯"{
+	GroupCommon = "室内灯";
+	Entry = "自動";
+	Entry = "消灯";
+}
+
+DefineSwitch " "{}
+
+DefineSwitch "【サウンド設定】"{}
+
+DefineSwitch "サウンド"{
+	GroupCommon = "サウンド";
+	Entry = "あり";
+	Entry = "なし";
+}
+
+DefineSwitch "  "{}
+
+DefineSwitch "【描画設定】"{}
+
+DefineSwitch "レンズフレア"{
+	GroupCommon = "レンズフレア";
+	Entry = "あり";
+	Entry = "なし";
+}
+
+DefineSwitch "簡易シャドウ"{
+	GroupCommon = "簡易シャドウ";
+	Entry = "あり";
+	Entry = "なし";
+}
+
+DefineSwitch "LOD(遠方での描画カット)"{
+	GroupCommon = "OER5000_LOD";
+	Entry = "ON";
+	Entry = "OFF";
+}
+
+DefineSwitch "環境マッピング"{
+	GroupCommon = "OER5000_環境マッピング";
+	Entry = "ON";
+	Entry = "OFF";
+}
+
+//以下LEDアニメーション
+
+DefineAnimation "新宿"{Frame = "../common_maki/oer5000/led_s/次駅/OH01_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH01_2.png", 180;}
+DefineAnimation "南新宿"{Frame = "../common_maki/oer5000/led_s/次駅/OH02_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH02_2.png", 180;}
+DefineAnimation "参宮橋"{Frame = "../common_maki/oer5000/led_s/次駅/OH03_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH03_2.png", 180;}
+DefineAnimation "代々木八幡"{Frame = "../common_maki/oer5000/led_s/次駅/OH04_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH04_2.png", 180;}
+DefineAnimation "代々木上原"{Frame = "../common_maki/oer5000/led_s/次駅/OH05_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH05_2.png", 180;}
+DefineAnimation "東北沢"{Frame = "../common_maki/oer5000/led_s/次駅/OH06_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH06_2.png", 180;}
+DefineAnimation "下北沢"{Frame = "../common_maki/oer5000/led_s/次駅/OH07_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH07_2.png", 180;}
+DefineAnimation "世田谷代田"{Frame = "../common_maki/oer5000/led_s/次駅/OH08_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH08_2.png", 180;}
+DefineAnimation "梅ヶ丘"{Frame = "../common_maki/oer5000/led_s/次駅/OH09_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH09_2.png", 180;}
+DefineAnimation "豪徳寺"{Frame = "../common_maki/oer5000/led_s/次駅/OH10_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH10_2.png", 180;}
+DefineAnimation "経堂"{Frame = "../common_maki/oer5000/led_s/次駅/OH11_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH11_2.png", 180;}
+DefineAnimation "千歳船橋"{Frame = "../common_maki/oer5000/led_s/次駅/OH12_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH12_2.png", 180;}
+DefineAnimation "祖師ヶ谷大蔵"{Frame = "../common_maki/oer5000/led_s/次駅/OH13_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH13_2.png", 180;}
+DefineAnimation "成城学園前"{Frame = "../common_maki/oer5000/led_s/次駅/OH14_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH14_2.png", 180;}
+DefineAnimation "喜多見"{Frame = "../common_maki/oer5000/led_s/次駅/OH15_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH15_2.png", 180;}
+DefineAnimation "狛江"{Frame = "../common_maki/oer5000/led_s/次駅/OH16_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH16_2.png", 180;}
+DefineAnimation "和泉多摩川"{Frame = "../common_maki/oer5000/led_s/次駅/OH17_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH17_2.png", 180;}
+DefineAnimation "登戸"{Frame = "../common_maki/oer5000/led_s/次駅/OH18_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH18_2.png", 180;}
+DefineAnimation "向ヶ丘遊園"{Frame = "../common_maki/oer5000/led_s/次駅/OH19_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH19_2.png", 180;}
+DefineAnimation "生田"{Frame = "../common_maki/oer5000/led_s/次駅/OH20_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH20_2.png", 180;}
+DefineAnimation "読売ランド前"{Frame = "../common_maki/oer5000/led_s/次駅/OH21_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH21_2.png", 180;}
+DefineAnimation "百合ヶ丘"{Frame = "../common_maki/oer5000/led_s/次駅/OH22_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH22_2.png", 180;}
+DefineAnimation "新百合ヶ丘"{Frame = "../common_maki/oer5000/led_s/次駅/OH23_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH23_2.png", 180;}
+DefineAnimation "柿生"{Frame = "../common_maki/oer5000/led_s/次駅/OH24_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH24_2.png", 180;}
+DefineAnimation "鶴川"{Frame = "../common_maki/oer5000/led_s/次駅/OH25_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH25_2.png", 180;}
+DefineAnimation "玉川学園前"{Frame = "../common_maki/oer5000/led_s/次駅/OH26_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH26_2.png", 180;}
+DefineAnimation "町田"{Frame = "../common_maki/oer5000/led_s/次駅/OH27_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH27_2.png", 180;}
+DefineAnimation "相模大野"{Frame = "../common_maki/oer5000/led_s/次駅/OH28_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH28_2.png", 180;}
+DefineAnimation "小田急相模原"{Frame = "../common_maki/oer5000/led_s/次駅/OH29_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH29_2.png", 180;}
+DefineAnimation "相武台前"{Frame = "../common_maki/oer5000/led_s/次駅/OH30_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH30_2.png", 180;}
+DefineAnimation "座間"{Frame = "../common_maki/oer5000/led_s/次駅/OH31_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH31_2.png", 180;}
+DefineAnimation "海老名"{Frame = "../common_maki/oer5000/led_s/次駅/OH32_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH32_2.png", 180;}
+DefineAnimation "厚木"{Frame = "../common_maki/oer5000/led_s/次駅/OH33_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH33_2.png", 180;}
+DefineAnimation "本厚木"{Frame = "../common_maki/oer5000/led_s/次駅/OH34_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH34_2.png", 180;}
+DefineAnimation "愛甲石田"{Frame = "../common_maki/oer5000/led_s/次駅/OH35_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH35_2.png", 180;}
+DefineAnimation "伊勢原"{Frame = "../common_maki/oer5000/led_s/次駅/OH36_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH36_2.png", 180;}
+DefineAnimation "鶴巻温泉"{Frame = "../common_maki/oer5000/led_s/次駅/OH37_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH37_2.png", 180;}
+DefineAnimation "東海大学前"{Frame = "../common_maki/oer5000/led_s/次駅/OH38_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH38_2.png", 180;}
+DefineAnimation "秦野"{Frame = "../common_maki/oer5000/led_s/次駅/OH39_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH39_2.png", 180;}
+DefineAnimation "渋沢"{Frame = "../common_maki/oer5000/led_s/次駅/OH40_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH40_2.png", 180;}
+DefineAnimation "新松田"{Frame = "../common_maki/oer5000/led_s/次駅/OH41_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH41_2.png", 180;}
+DefineAnimation "開成"{Frame = "../common_maki/oer5000/led_s/次駅/OH42_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH42_2.png", 180;}
+DefineAnimation "小田原"{Frame = "../common_maki/oer5000/led_s/次駅/OH47_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OH47_2.png", 180;}
+DefineAnimation "中央林間"{Frame = "../common_maki/oer5000/led_s/次駅/OE02_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OE02_2.png", 180;}
+DefineAnimation "南林間"{Frame = "../common_maki/oer5000/led_s/次駅/OE03_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OE03_2.png", 180;}
+DefineAnimation "大和"{Frame = "../common_maki/oer5000/led_s/次駅/OE05_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OE05_2.png", 180;}
+DefineAnimation "長後"{Frame = "../common_maki/oer5000/led_s/次駅/OE08_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OE08_2.png", 180;}
+DefineAnimation "湘南台"{Frame = "../common_maki/oer5000/led_s/次駅/OE09_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OE09_2.png", 180;}
+DefineAnimation "藤沢"{Frame = "../common_maki/oer5000/led_s/次駅/OE13_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OE13_2.png", 180;}
+DefineAnimation "片瀬江ノ島"{Frame = "../common_maki/oer5000/led_s/次駅/OE16_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OE16_2.png", 180;}
+DefineAnimation "五月台"{Frame = "../common_maki/oer5000/led_s/次駅/OT01_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OT01_2.png", 180;}
+DefineAnimation "栗平"{Frame = "../common_maki/oer5000/led_s/次駅/OT02_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OT02_2.png", 180;}
+DefineAnimation "黒川"{Frame = "../common_maki/oer5000/led_s/次駅/OT03_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OT03_2.png", 180;}
+DefineAnimation "はるひ野"{Frame = "../common_maki/oer5000/led_s/次駅/OT04_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OT04_2.png", 180;}
+DefineAnimation "小田急永山"{Frame = "../common_maki/oer5000/led_s/次駅/OT05_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OT05_2.png", 180;}
+DefineAnimation "多摩センター"{Frame = "../common_maki/oer5000/led_s/次駅/OT06_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OT06_2.png", 180;}
+DefineAnimation "唐木田"{Frame = "../common_maki/oer5000/led_s/次駅/OT07_1.png", 180; Frame = "../common_maki/oer5000/led_s/次駅/OT07_2.png", 180;}
+
+//LEDおわり
+
+
+PrimaryAssembly{
+
+	Axle "Wheel1"{
+		ModelFileName = "";
+		If "_CAMDIST" < 500 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/wheel.x", 0.1;
+		}
+		Diameter = 0.84;
+		Symmetric = 16;
+		Coord = (8.03, 0.45);
+	}
+
+	Axle "Wheel2"{
+		ModelFileName = "";
+		If "_CAMDIST" < 500 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/wheel.x", 0.1;
+		}
+		Diameter = 0.84;
+		Symmetric = 16;
+		Coord = (5.9, 0.45);
+	}
+
+	Axle "Wheel3"{
+		ModelFileName = "";
+		If "_CAMDIST" < 500 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/wheel.x", 0.1;
+		}
+		Diameter = 0.84;
+		Symmetric = 16;
+		Coord = (-5.9, 0.45);
+	}
+
+	Axle "Wheel4"{
+		ModelFileName = "";
+		If "_CAMDIST" < 500 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/wheel.x", 0.1;
+		}
+		Diameter = 0.84;
+		Symmetric = 16;
+		Coord = (-8.03, 0.45);
+	}
+
+	Body "Bogie1"{
+		ModelFileName = "";
+		If "_CAMDIST" < 800 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/bogie.x", 0.1;
+		}
+		JointZY "Wheel1"{
+			AttachCoord = (0.0, 0.0);
+			LocalCoord = (1.0, -0.1);
+		}
+		JointZY "Wheel2"{
+			AttachCoord = (0.0, 0.0);
+			LocalCoord = (-1.0, -0.1);
+		}
+	}
+
+	Body "Bogie2"{
+		ModelFileName = "";
+		If "_CAMDIST" < 800 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/bogie.x", 0.1;
+		}
+		JointZY "Wheel3"{
+			AttachCoord = (0.0, 0.0);
+			LocalCoord = (1.0, -0.1);
+		}
+		JointZY "Wheel4"{
+			AttachCoord = (0.0, 0.0);
+			LocalCoord = (-1.0, -0.1);
+		}
+	}
+
+	Body "Dummy"{
+		ModelFileName = "";
+		JointZY "Bogie1"{
+			AttachCoord = (0.0, 0.55);
+			LocalCoord = (8.5, 1.0);
+		}
+		JointZY "Bogie2"{
+			AttachCoord = (0.0, 0.55);
+			LocalCoord = (-8.5, 1.0);
+		}
+	}
+
+	Object3D "Light"{
+		ModelFileName = "";
+		If "_CAMDIST" < 800 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/light.x", 0.1;
+		}
+		NoShadow = 0,1;
+		Transparent = 2;
+			If "電源(パンタグラフ)"{
+				ApplySwitch "ライト"{
+				Case 0:
+					If !"_FRONT"{
+						ShiftTexture = 0, 0.0, 0.25;
+						ShiftTexture = 1, 0.0, 0.25;
+						ChangeMaterial{
+							MaterialID = 0,1;
+							Emissive = 1.0, 1.0, 1.0;
+						}
+					}Else{
+						ShiftTexture = 0, 0.0, 0.5;
+						ShiftTexture = 1, 0.0, 0.0;
+						ChangeMaterial{
+							MaterialID = 0;
+							Emissive = 1.0, 1.0, 1.0;
+						}
+					}
+				Case 1:
+					If !"_FRONT"{
+						ShiftTexture = 0, 0.0, 0.25;
+						ShiftTexture = 1, 0.0, 0.5;
+						ChangeMaterial{
+							MaterialID = 0,1;
+							Emissive = 1.0, 1.0, 1.0;
+						}
+					}Else{
+						ShiftTexture = 0, 0.0, 0.5;
+						ShiftTexture = 1, 0.0, 0.0;
+						ChangeMaterial{
+							MaterialID = 0;
+							Emissive = 1.0, 1.0, 1.0;
+						}
+				}
+				Case 2:
+					ShiftTexture = 0, 0.0, 0.75;
+					ShiftTexture = 1, 0.0, 0.25;
+					ChangeMaterial{
+						MaterialID = 0,1;
+						Emissive = 1.0, 1.0, 1.0;
+					}
+				}
+			}
+
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, 0.0);
+		}
+	}
+
+	Object3D "MainBody"{
+		ModelFileName = "";
+		Transparent = 3,13;
+		NoShadow = 5,7,8,9,10;
+		If "_CAMDIST" < 800 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/body_f_hq.x", 0.1;
+		}
+
+		If !"電源(パンタグラフ)"{
+			ChangeMaterial{
+				MaterialID = 5,6,7,8,9,10;
+				Emissive = 0.0, 0.0, 0.0;
+			}
+		}
+
+		/*	もころんラッピング
+		ApplySwitch "編成"{
+		Case 4:
+			ApplySwitch "号車"{
+			Case 0:
+				ChangeTexture = 11,"../common_maki/oer5000/frontparts_m1.png";
+				ChangeTexture = 12,"../common_maki/oer5000/front_m1.png";
+			Case 1:
+				ChangeTexture = 11,"../common_maki/oer5000/frontparts_m2.png";
+				ChangeTexture = 12,"../common_maki/oer5000/front_m2.png";
+			}
+		}
+		*/
+
+	/*-------------------- PBR構文 --------------------------*/
+		If !"環境マッピング"{
+			EnvMap = 0,2,3,4,6,11,12,13;
+			BumpMap = 0,2,3,4,6,11,12,13;
+			ChangeTexture = 0, "../common_maki/oer5000/side.png", "../common_maki/oer5000/normal/side_normal.png", "../common_maki/oer5000/PBR/side_pbr.png";
+			ChangeTexture = 2, "../common_maki/oer5000/tuma.png", "../common_maki/oer5000/normal/tuma_normal.png", "../common_maki/oer5000/PBR/tuma_pbr.png";
+			ChangeTexture = 3, "../common_maki/oer5000/alpha.png", "../common_maki/oer5000/normal/normal.png", "../common_maki/oer5000/PBR/alpha_pbr.png";
+			ChangeTexture = 4, "../common_maki/oer5000/outparts.png", "../common_maki/oer5000/normal/outparts_normal.png", "../common_maki/oer5000/PBR/outparts_pbr.png";
+			ChangeTexture = 6, "../common_maki/oer5000/inside.png", "../common_maki/oer5000/normal/normal.png", "../common_maki/oer5000/PBR/inside_pbr.png";
+			ChangeTexture = 11, "../common_maki/oer5000/frontparts.png", "../common_maki/oer5000/normal/front_s_normal.png", "../common_maki/oer5000/PBR/front_s_pbr.png";
+			ChangeTexture = 12, "../common_maki/oer5000/front.png", "../common_maki/oer5000/normal/front_normal.png", "../common_maki/oer5000/PBR/front_pbr.png";
+			ChangeTexture = 13, "../common_maki/oer5000/front.png", "../common_maki/oer5000/normal/front_normal.png", "../common_maki/oer5000/PBR/front_pbr.png";
+		}
+
+	/*もころんラッピング
+		ApplySwitch "編成"{
+		Case 4:
+			ChangeTexture = 11, "../common_maki/oer5000/frontparts.png", "../common_maki/oer5000/normal/frontparts_m_normal.png", "../common_maki/oer5000/PBR/frontparts_m_pbr.png";
+			ChangeTexture = 12, "../common_maki/oer5000/front_m.png", "../common_maki/oer5000/normal/front_m_normal.png", "../common_maki/oer5000/PBR/front_m_pbr.png";
+		}
+	*/
+
+	/*-------------------- PBR構文おわり --------------------*/
+
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, 0.0);
+		}
+	}
+
+	Object3D "Inside"{
+		ModelFileName = "";
+		NoShadow = 6;
+		If "_CAMDIST" < 100 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/inside_f_hq.x", 0.1;
+		}
+
+		If !"電源(パンタグラフ)"{
+			ChangeMaterial{
+				MaterialID = 5,6,7,8,9,10;
+				Emissive = 0.0, 0.0, 0.0;
+			}
+		}
+	/*-------------------- PBR構文 --------------------------*/
+		If !"環境マッピング"{
+			EnvMap = 6;
+			BumpMap = 6;
+			ChangeTexture = 6,"../common_maki/oer5000/inside.png", "../common_maki/oer5000/normal/normal.png", "../common_maki/oer5000/PBR/inside_pbr.png";
+		}
+	/*-------------------- PBR構文おわり --------------------*/
+
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, 0.0);
+		}
+	}
+
+	Object3D "Number"{
+		ModelFileName = "";
+		AlphaZeroTest = 0,1,2,3,4,5,6,7,8,9,10,11,12,14,15;
+		NoShadow = 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15;
+		If "_CAMDIST" < 100 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/number_f.x", 0.1;
+		}
+
+	/*もころんラッピング
+		ApplySwitch "編成"{
+		Case 4:
+			ChangeTexture = 7,"../common_maki/oer5000/number4.png";
+			ChangeTexture = 8,"../common_maki/oer5000/number4.png";
+			ChangeTexture = 9,"../common_maki/oer5000/number4.png";
+			ChangeTexture = 10,"../common_maki/oer5000/number4.png";
+			ChangeTexture = 11,"../common_maki/oer5000/number4.png";
+		}
+	*/
+
+		ShiftTexture = 0, 0.25, 0.25;	ShiftTexture = 7, 0.25, 0.25;
+
+		ApplySwitch "号車"{
+			Case 0:		ShiftTexture = 1, 0.00, 0.25;	ShiftTexture = 8, 0.00, 0.25;
+			Case 1:		ShiftTexture = 1, 0.00, 0.00;	ShiftTexture = 8, 0.00, 0.00;
+		}
+
+		ApplySwitch "編成"{
+			Case 0,1,2,3,4,5,6,7,8:		ShiftTexture = 2, 0.25, 0.25;	ShiftTexture = 9, 0.25, 0.25;
+			Case 9,10,11,12,13,14,15,16,17:	ShiftTexture = 2, 0.50, 0.25;	ShiftTexture = 9, 0.50, 0.25;
+		}
+
+		ApplySwitch "編成"{
+			Case 0,10:	ShiftTexture = 3, 0.25, 0.00;	ShiftTexture = 10, 0.25, 0.00;
+			Case 1,11:	ShiftTexture = 3, 0.50, 0.00;	ShiftTexture = 10, 0.50, 0.00;
+			Case 2,12:	ShiftTexture = 3, 0.75, 0.00;	ShiftTexture = 10, 0.75, 0.00;
+			Case 3,13:	ShiftTexture = 3, 0.00, 0.25;	ShiftTexture = 10, 0.00, 0.25;
+			Case 4,14:	ShiftTexture = 3, 0.25, 0.25;	ShiftTexture = 10, 0.25, 0.25;
+			Case 5,15:	ShiftTexture = 3, 0.50, 0.25;	ShiftTexture = 10, 0.50, 0.25;
+			Case 6,16:	ShiftTexture = 3, 0.75, 0.25;	ShiftTexture = 10, 0.75, 0.25;
+			Case 7,17:	ShiftTexture = 3, 0.00, 0.50;	ShiftTexture = 10, 0.00, 0.50;
+			Case 8:		ShiftTexture = 3, 0.25, 0.50;	ShiftTexture = 10, 0.25, 0.50;
+			Case 9:		ShiftTexture = 3, 0.00, 0.00;	ShiftTexture = 10, 0.00, 0.00;
+		}
+
+		ApplySwitch "号車"{
+			Case 0:		ShiftTexture = 4, 0.00, 0.00;
+			Case 1:		ShiftTexture = 4, 0.25, 0.50;
+		}
+
+		ApplySwitch "号車"{
+		Case 0:
+			ChangeTexture = 14,"../common_maki/oer5000/inside.png";
+			ChangeTexture = 15,"../common_maki/oer5000/inside.png";
+		}
+
+		If !"電源(パンタグラフ)"{
+			ChangeMaterial{
+				MaterialID = 6,13,15;
+				Emissive = 0.0, 0.0, 0.0;
+			}
+		}
+
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, 0.0);
+		}
+	}
+
+	Object3D "UnderParts"{
+		ModelFileName = "";
+		Transparent = 0;
+		AlphaZeroTest = 0;
+			ApplySwitch "号車"{
+			Case 0:
+				ChangeModel = "../common_maki/oer5000/yuka_Tc2_hq.x",0.1;
+			Case 1:
+				ChangeModel = "../common_maki/oer5000/yuka_Tc1_hq.x",0.1;
+			}
+		If "_CAMDIST" >= 800 && !"LOD(遠方での描画カット)" {
+			ChangeModel = "", 0.1;
+		}
+
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, 0.0);
+		}
+	}
+
+	Object3D "Hood"{
+		ModelFileName = "";
+		ModelScale = 1.0;
+		If !"号車" && ("_CAMDIST" < 800 || "LOD(遠方での描画カット)"){
+			ChangeModel = "../common_maki/oer5000/hood.x",0.1;
+		}
+
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, -9.792);
+		}
+	}
+
+	Object3D "Shadow"{
+		ModelFileName = "";
+		ModelScale = 1.0;
+		NoShadow = 0;
+		If !"簡易シャドウ" && ("_CAMDIST" < 800 || "LOD(遠方での描画カット)"){
+			ChangeModel = "../common_maki/oer5000/shadow.x",0.1;
+		}
+
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, 0.0);
+		}
+	}
+
+	Object3D "Frontled"{
+		ModelFileName = "";
+		NoCastShadow = 3,4;
+		If "_CAMDIST" < 800 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/f_led.x", 0.1;
+		}
+		If "電源(パンタグラフ)" && "_CAMDIST" < 500{
+			ApplySwitch "種別"{
+			Case 1:
+				ChangeTexture = 0,"../common_maki/oer5000/led_f/loc.png";
+			Case 2:
+				ChangeTexture = 0,"../common_maki/oer5000/led_f/exp.png";
+			Case 3:
+				ChangeTexture = 0,"../common_maki/oer5000/led_f/cexp.png";
+			Case 4:
+				ChangeTexture = 0,"../common_maki/oer5000/led_f/rap.png";
+			}
+			ApplySwitch "行先"{
+			Case 1:
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/shi.png";
+			Case 2:
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/yur.png";
+			Case 3:
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/ono.png";
+			Case 4:
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/ats.png";
+			Case 5:
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/ise.png";
+			Case 6:
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/mat.png";
+			Case 7:
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/oda.png";
+			Case 8:
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/fuj.png";
+			Case 9:
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/eno.png";
+			Case 10:
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/kar.png";
+			Case 11:
+				ChangeTexture = 0,"../common_maki/oer5000/led_f/not.png";
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/not2.png";
+			Case 12:
+				ChangeTexture = 0,"../common_maki/oer5000/led_f/tra.png";
+				ChangeTexture = 1,"../common_maki/oer5000/led_f/tra2.png";
+			}
+		}
+
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, 0.0);
+		}
+	}
+
+	Object3D "Sideled"{
+		ModelFileName = "";
+		NoCastShadow = 2,3;
+		If "_CAMDIST" < 800 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/s_led.x", 0.1;
+		}
+
+	/*-------------------- PBR構文 --------------------------*/
+		If !"環境マッピング"{
+			EnvMap = 5;
+			BumpMap = 5;
+			ChangeTexture = 5, "../common_maki/oer5000/alpha.png", "../common_maki/oer5000/normal/normal.png", "../common_maki/oer5000/PBR/alpha_pbr.png";
+		}
+	/*-------------------- PBR構文おわり --------------------*/
+
+		If "電源(パンタグラフ)" && "_VELOCITY" < 40 && "_CAMDIST" < 100{
+			ApplySwitch "種別"{
+			Case 1:
+				ChangeTexture = 0,"../common_maki/oer5000/led_s/loc.png";
+			Case 2:
+				ChangeTexture = 0,"../common_maki/oer5000/led_s/exp.png";
+			Case 3:
+				ChangeTexture = 0,"../common_maki/oer5000/led_s/cexp.png";
+			Case 4:
+				ChangeTexture = 0,"../common_maki/oer5000/led_s/rap.png";
+			}
+			If ("行先" < 11 && "次駅表示") & "_VELOCITY" < 20{
+				ApplySwitch "行先"{
+				Case 1:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/shi.png";
+				Case 2:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/yur.png";
+				Case 3:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/ono.png";
+				Case 4:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/ats.png";
+				Case 5:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/ise.png";
+				Case 6:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/mat.png";
+				Case 7:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/oda.png";
+				Case 8:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/fuj.png";
+				Case 9:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/eno.png";
+				Case 10:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/kar.png";
+				}
+				ApplySwitch "次駅表示"{
+				Case 1:
+					SetAnimation = 2,"新宿";
+				Case 2:
+					SetAnimation = 2,"南新宿";
+				Case 3:
+					SetAnimation = 2,"参宮橋";
+				Case 4:
+					SetAnimation = 2,"代々木八幡";
+				Case 5:
+					SetAnimation = 2,"代々木上原";
+				Case 6:
+					SetAnimation = 2,"東北沢";
+				Case 7:
+					SetAnimation = 2,"下北沢";
+				Case 8:
+					SetAnimation = 2,"世田谷代田";
+				Case 9:
+					SetAnimation = 2,"梅ヶ丘";
+				Case 10:
+					SetAnimation = 2,"豪徳寺";
+				Case 11:
+					SetAnimation = 2,"経堂";
+				Case 12:
+					SetAnimation = 2,"千歳船橋";
+				Case 13:
+					SetAnimation = 2,"祖師ヶ谷大蔵";
+				Case 14:
+					SetAnimation = 2,"成城学園前";
+				Case 15:
+					SetAnimation = 2,"喜多見";
+				Case 16:
+					SetAnimation = 2,"狛江";
+				Case 17:
+					SetAnimation = 2,"和泉多摩川";
+				Case 18:
+					SetAnimation = 2,"登戸";
+				Case 19:
+					SetAnimation = 2,"向ヶ丘遊園";
+				Case 20:
+					SetAnimation = 2,"生田";
+				Case 21:
+					SetAnimation = 2,"読売ランド前";
+				Case 22:
+					SetAnimation = 2,"百合ヶ丘";
+				Case 23:
+					SetAnimation = 2,"新百合ヶ丘";
+				Case 24:
+					SetAnimation = 2,"柿生";
+				Case 25:
+					SetAnimation = 2,"鶴川";
+				Case 26:
+					SetAnimation = 2,"玉川学園前";
+				Case 27:
+					SetAnimation = 2,"町田";
+				Case 28:
+					SetAnimation = 2,"相模大野";
+				Case 29:
+					SetAnimation = 2,"小田急相模原";
+				Case 30:
+					SetAnimation = 2,"相武台前";
+				Case 31:
+					SetAnimation = 2,"座間";
+				Case 32:
+					SetAnimation = 2,"海老名";
+				Case 33:
+					SetAnimation = 2,"厚木";
+				Case 34:
+					SetAnimation = 2,"本厚木";
+				Case 35:
+					SetAnimation = 2,"愛甲石田";
+				Case 36:
+					SetAnimation = 2,"伊勢原";
+				Case 37:
+					SetAnimation = 2,"鶴巻温泉";
+				Case 38:
+					SetAnimation = 2,"東海大学前";
+				Case 39:
+					SetAnimation = 2,"秦野";
+				Case 40:
+					SetAnimation = 2,"渋沢";
+				Case 41:
+					SetAnimation = 2,"新松田";
+				Case 42:
+					SetAnimation = 2,"開成";
+				Case 43:
+					SetAnimation = 2,"小田原";
+				Case 44:
+					SetAnimation = 2,"中央林間";
+				Case 45:
+					SetAnimation = 2,"南林間";
+				Case 46:
+					SetAnimation = 2,"大和";
+				Case 47:
+					SetAnimation = 2,"長後";
+				Case 48:
+					SetAnimation = 2,"湘南台";
+				Case 49:
+					SetAnimation = 2,"藤沢";
+				Case 50:
+					SetAnimation = 2,"片瀬江ノ島";
+				Case 51:
+					SetAnimation = 2,"五月台";
+				Case 52:
+					SetAnimation = 2,"栗平";
+				Case 53:
+					SetAnimation = 2,"黒川";
+				Case 54:
+					SetAnimation = 2,"はるひ野";
+				Case 55:
+					SetAnimation = 2,"小田急永山";
+				Case 56:
+					SetAnimation = 2,"多摩センター";
+				Case 57:
+					SetAnimation = 2,"唐木田";
+				}
+			}Else{
+				ApplySwitch "行先"{
+				Case 1:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/shi2.png";
+				Case 2:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/yur2.png";
+				Case 3:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/ono2.png";
+				Case 4:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/ats2.png";
+				Case 5:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/ise2.png";
+				Case 6:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/mat2.png";
+				Case 7:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/oda2.png";
+				Case 8:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/fuj2.png";
+				Case 9:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/eno2.png";
+				Case 10:
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/kar2.png";
+				Case 11:
+					ChangeTexture = 0,"../common_maki/oer5000/led_s/not.png";
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/not2.png";
+				Case 12:
+					ChangeTexture = 0,"../common_maki/oer5000/led_s/tra.png";
+					ChangeTexture = 1,"../common_maki/oer5000/led_s/tra2.png";
+				}
+			}
+		}
+
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, -0.01);
+		}
+	}
+
+	Object3D "DoorL1"{
+		ModelFileName = "";
+		Transparent = 0,5;
+		NoShadow = 0,2,3,4,6;
+		If "_CAMDIST" < 800 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/doorL.x", 0.1;
+		}
+
+	/*-------------------- PBR構文 --------------------------*/
+		If !"環境マッピング"{
+			EnvMap = 1,5;
+			BumpMap = 1,5;
+			ChangeTexture = 1, "../common_maki/oer5000/door1.png", "../common_maki/oer5000/normal/door_normal.png", "../common_maki/oer5000/PBR/door_pbr.png";
+			ChangeTexture = 5, "../common_maki/oer5000/alpha.png", "../common_maki/oer5000/normal/normal.png", "../common_maki/oer5000/PBR/alpha_pbr.png";
+		}
+	/*-------------------- PBR構文おわり --------------------*/
+
+		If !"電源(パンタグラフ)"{
+			ChangeMaterial{
+				MaterialID = 0,2,4;
+				Emissive = 0.0, 0.0, 0.0;
+			}
+		}
+
+		If "_DOOR1"||"ドア"==3||("号車"==0&&"ドア"==2)||("号車">=1&&"ドア"==1){
+			StaticMove{
+				Displacement = (0.0, 0.0, -0.1);
+				PreAnimationDelay = 2.7;
+				AnimationTime = 0.7;
+				AnimationEase = 0.0, -1.5;
+				PreReverseDelay = 2.2;
+				ReverseTime = 0.7;
+				ReverseEase = 0.0, -0.1;
+			}
+			StaticMove{
+				Displacement = (0.0, 0.0, -0.54);
+				PreAnimationDelay = 1.0;
+				AnimationTime = 1.7;
+				AnimationEase = 0.5, -0.2;
+				PreReverseDelay = 0.5;
+				ReverseTime = 1.7;
+				ReverseEase = 0.3, -0.3;
+			}
+		}
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, 0.0);
+		}
+	}
+
+	Object3D "DoorR1"{
+		ModelFileName = "";
+		Transparent = 0,5;
+		NoShadow = 0,2,3,4,6;
+		If "_CAMDIST" < 800 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/doorR.x", 0.1;
+		}
+
+	/*-------------------- PBR構文 --------------------------*/
+		If !"環境マッピング"{
+			EnvMap = 1,5;
+			BumpMap = 1,5;
+			ChangeTexture = 1, "../common_maki/oer5000/door1.png", "../common_maki/oer5000/normal/door_normal.png", "../common_maki/oer5000/PBR/door_pbr.png";
+			ChangeTexture = 5, "../common_maki/oer5000/alpha.png", "../common_maki/oer5000/normal/normal.png", "../common_maki/oer5000/PBR/alpha_pbr.png";
+		}
+	/*-------------------- PBR構文おわり --------------------*/
+
+		If !"電源(パンタグラフ)"{
+			ChangeMaterial{
+				MaterialID = 0,2,4;
+				Emissive = 0.0, 0.0, 0.0;
+			}
+		}
+
+		If "_DOOR1"||"ドア"==3||("号車"==0&&"ドア"==2)||("号車">=1&&"ドア"==1){
+			StaticMove{
+				Displacement = (0.0, 0.0, 0.1);
+				PreAnimationDelay = 2.7;
+				AnimationTime = 0.7;
+				AnimationEase = 0.0, -1.5;
+				PreReverseDelay = 2.2;
+				ReverseTime = 0.7;
+				ReverseEase = 0.0, -0.1;
+			}
+			StaticMove{
+				Displacement = (0.0, 0.0, 0.54);
+				PreAnimationDelay = 1.0;
+				AnimationTime = 1.7;
+				AnimationEase = 0.5, -0.2;
+				PreReverseDelay = 0.5;
+				ReverseTime = 1.7;
+				ReverseEase = 0.3, -0.3;
+			}
+		}
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, 0.0);
+		}
+	}
+
+	Object3D "DoorL2"{
+		ModelFileName = "";
+		ModelScale = 0.1;
+		Transparent = 0,5;
+		NoShadow = 0,2,3,4,6;
+		If "_CAMDIST" < 800 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/doorL.x", 0.1;
+		}
+
+	/*-------------------- PBR構文 --------------------------*/
+		If !"環境マッピング"{
+			EnvMap = 1,5;
+			BumpMap = 1,5;
+			ChangeTexture = 1, "../common_maki/oer5000/door1.png", "../common_maki/oer5000/normal/door_normal.png", "../common_maki/oer5000/PBR/door_pbr.png";
+			ChangeTexture = 5, "../common_maki/oer5000/alpha.png", "../common_maki/oer5000/normal/normal.png", "../common_maki/oer5000/PBR/alpha_pbr.png";
+		}
+	/*-------------------- PBR構文おわり --------------------*/
+
+		If !"電源(パンタグラフ)"{
+			ChangeMaterial{
+				MaterialID = 0,2,4;
+				Emissive = 0.0, 0.0, 0.0;
+			}
+		}
+
+		If "_DOOR2"||"ドア"==3||("号車"==0&&"ドア"==1)||("号車">=1&&"ドア"==2){
+			StaticMove{
+				Displacement = (0.0, 0.0, -0.1);
+				PreAnimationDelay = 2.7;
+				AnimationTime = 0.7;
+				AnimationEase = 0.0, -1.5;
+				PreReverseDelay = 2.2;
+				ReverseTime = 0.7;
+				ReverseEase = 0.0, -0.1;
+			}
+			StaticMove{
+				Displacement = (0.0, 0.0, -0.54);
+				PreAnimationDelay = 1.0;
+				AnimationTime = 1.7;
+				AnimationEase = 0.5, -0.2;
+				PreReverseDelay = 0.5;
+				ReverseTime = 1.7;
+				ReverseEase = 0.3, -0.3;
+			}
+		}
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, -0.032);
+			AttachDir = (0.0, 0.0, -1.0);
+		}
+	}
+
+	Object3D "DoorR2"{
+		ModelFileName = "";
+		Transparent = 0,5;
+		NoShadow = 0,2,3,4,6;
+		If "_CAMDIST" < 800 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/doorR.x", 0.1;
+		}
+
+	/*-------------------- PBR構文 --------------------------*/
+		If !"環境マッピング"{
+			EnvMap = 1,5;
+			BumpMap = 1,5;
+			ChangeTexture = 1, "../common_maki/oer5000/door1.png", "../common_maki/oer5000/normal/door_normal.png", "../common_maki/oer5000/PBR/door_pbr.png";
+			ChangeTexture = 5, "../common_maki/oer5000/alpha.png", "../common_maki/oer5000/normal/normal.png", "../common_maki/oer5000/PBR/alpha_pbr.png";
+		}
+	/*-------------------- PBR構文おわり --------------------*/
+
+		If !"電源(パンタグラフ)"{
+			ChangeMaterial{
+				MaterialID = 0,2,4;
+				Emissive = 0.0, 0.0, 0.0;
+			}
+		}
+
+		If "_DOOR2"||"ドア"==3||("号車"==0&&"ドア"==1)||("号車">=1&&"ドア"==2){
+			StaticMove{
+				Displacement = (0.0, 0.0, 0.1);
+				PreAnimationDelay = 2.7;
+				AnimationTime = 0.7;
+				AnimationEase = 0.0, -1.5;
+				PreReverseDelay = 2.2;
+				ReverseTime = 0.7;
+				ReverseEase = 0.0, -0.1;
+			}
+			StaticMove{
+				Displacement = (0.0, 0.0, 0.54);
+				PreAnimationDelay = 1.0;
+				AnimationTime = 1.7;
+				AnimationEase = 0.5, -0.2;
+				PreReverseDelay = 0.5;
+				ReverseTime = 1.7;
+				ReverseEase = 0.3, -0.3;
+			}
+		}
+		Joint3D "Dummy"{
+			AttachCoord = (0.0, 0.0, -0.032);
+			AttachDir = (0.0, 0.0, -1.0);
+		}
+	}
+
+	Object3D "DoorLampL"{
+		ModelFileName = "";
+		NoShadow = 1;
+		If "_CAMDIST" < 500 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/door_lamp.x", 0.1;
+		}
+		If "_DOOR1"||"ドア"==3||("号車"==0&&"ドア"==2)||("号車">=1&&"ドア"==1){
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 0.9;
+				PreReverseDelay = 3.8;
+			}
+		}
+		Joint3D "Dummy"{
+			AttachCoord = (-1.446, 2.954, -0.800);
+		}
+	}
+
+	Object3D "DoorLampR"{
+		ModelFileName = "";
+		NoShadow = 1;
+		If "_CAMDIST" < 500 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/door_lamp.x", 0.1;
+		}
+		If "_DOOR2"||"ドア"==3||("号車"==0&&"ドア"==1)||("号車">=1&&"ドア"==2){
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 0.9;
+				PreReverseDelay = 3.8;
+			}
+		}
+		Joint3D "Dummy"{
+			AttachCoord = (1.446, 2.954, 0.800);
+			AttachDir = (0.0, 0.0, -1.0);
+		}
+	}
+
+
+	Object3D "InDoorLampL"{
+		ModelFileName = "";
+		NoShadow = 1;
+		If "_CAMDIST" < 50 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/door_lamp2.x", 0.1;
+		}
+
+		If !"電源(パンタグラフ)"{
+			ChangeMaterial{
+				MaterialID = 0;
+				Emissive = 0.0, 0.0, 0.0;
+			}
+		}
+
+		If "_DOOR1"||"ドア"==3||("号車"==0&&"ドア"==2)||("号車">=1&&"ドア"==1){
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 0.9;
+				PreReverseDelay = 0.4;
+			}
+			StaticRotation{
+				RotationAngle = -180.0;
+				PreAnimationDelay = 1.2;
+				PreReverseDelay = 0.7;
+			}
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 1.5;
+				PreReverseDelay = 1.0;
+			}
+			StaticRotation{
+				RotationAngle = -180.0;
+				PreAnimationDelay = 1.8;
+				PreReverseDelay = 1.3;
+			}
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 2.1;
+				PreReverseDelay = 1.6;
+			}
+			StaticRotation{
+				RotationAngle = -180.0;
+				PreAnimationDelay = 2.4;
+				PreReverseDelay = 1.9;
+			}
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 2.7;
+				PreReverseDelay = 2.2;
+			}
+			StaticRotation{
+				RotationAngle = -180.0;
+				PreAnimationDelay = 3.0;
+				PreReverseDelay = 2.5;
+			}
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 3.3;
+				PreReverseDelay = 2.8;
+			}
+			StaticRotation{
+				RotationAngle = -180.0;
+				PreAnimationDelay = 3.6;
+				PreReverseDelay = 3.1;
+			}
+		}
+		Joint3D "Dummy"{
+			AttachCoord = (-1.35, 2.881, 0.0);
+		}
+	}
+
+	Object3D "InDoorLampR"{
+		ModelFileName = "";
+		NoShadow = 1;
+		If "_CAMDIST" < 50 || "LOD(遠方での描画カット)" {
+			ChangeModel = "../common_maki/oer5000/door_lamp2.x", 0.1;
+		}
+
+		If !"電源(パンタグラフ)"{
+			ChangeMaterial{
+				MaterialID = 0;
+				Emissive = 0.0, 0.0, 0.0;
+			}
+		}
+
+		If "_DOOR2"||"ドア"==3||("号車"==0&&"ドア"==1)||("号車">=1&&"ドア"==2){
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 0.9;
+				PreReverseDelay = 0.4;
+			}
+			StaticRotation{
+				RotationAngle = -180.0;
+				PreAnimationDelay = 1.2;
+				PreReverseDelay = 0.7;
+			}
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 1.5;
+				PreReverseDelay = 1.0;
+			}
+			StaticRotation{
+				RotationAngle = -180.0;
+				PreAnimationDelay = 1.8;
+				PreReverseDelay = 1.3;
+			}
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 2.1;
+				PreReverseDelay = 1.6;
+			}
+			StaticRotation{
+				RotationAngle = -180.0;
+				PreAnimationDelay = 2.4;
+				PreReverseDelay = 1.9;
+			}
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 2.7;
+				PreReverseDelay = 2.2;
+			}
+			StaticRotation{
+				RotationAngle = -180.0;
+				PreAnimationDelay = 3.0;
+				PreReverseDelay = 2.5;
+			}
+			StaticRotation{
+				RotationAngle = 180.0;
+				PreAnimationDelay = 3.3;
+				PreReverseDelay = 2.8;
+			}
+			StaticRotation{
+				RotationAngle = -180.0;
+				PreAnimationDelay = 3.6;
+				PreReverseDelay = 3.1;
+			}
+		}
+		Joint3D "Dummy"{
+			AttachCoord = (1.35, 2.881, -0.032);
+		}
+	}
+
+	Object3D "DoorSoundL"{
+		ModelFileName = "";
+		If "_DOOR1"||"ドア"==3||("号車"==0&&"ドア"==2)||("号車">=1&&"ドア"==1){
+			StaticMove{
+				Displacement = (0.0, 3000.0, 0.0);
+				PreAnimationDelay = 0.0;
+				AnimationTime = 0.0;
+				PreReverseDelay = 5.0;
+				ReverseTime = 0.0;
+			}
+		}
+		Joint3D "MainBody"{
+			AttachCoord = (-1.4, -2997.0, 0.0);
+		}
+	}
+
+	Object3D "DoorSoundR"{
+		ModelFileName = "";
+		If "_DOOR2"||"ドア"==3||("号車"==0&&"ドア"==1)||("号車">=1&&"ドア"==2){
+			StaticMove{
+				Displacement = (0.0, 3000.0, 0.0);
+				PreAnimationDelay = 0.0;
+				AnimationTime = 0.0;
+				PreReverseDelay = 5.0;
+				ReverseTime = 0.0;
+			}
+		}
+		Joint3D "MainBody"{
+			AttachCoord = (1.4, -2997.0, 0.0);
+		}
+	}
+
+	If "電源(パンタグラフ)" && !"レンズフレア"{
+		ApplySwitch "ライト"{
+		Case 0,1,2:
+			If !"_FRONT" | "ライト" == 2{
+				Headlight{
+					AttachObject = "MainBody";
+					SourceCoord = (-0.87, 1.35, 10.22);
+					Direction = (0.0, 0.0, 1.0);
+					MaxDistance = 30.0;
+					LensFlare{
+						StartAngle = 25.0;
+						Twinkle = 0.1;
+						Texture{
+							Distance = 0.0;
+							Radius = 0.25;
+							TexFileName = "../common_maki/oer5000/flare2.png";
+						}
+					}
+				}
+				Headlight{
+					AttachObject = "MainBody";
+					SourceCoord = (0.87, 1.35, 10.22);
+					Direction = (0.0, 0.0, 1.0);
+					MaxDistance = 30.0;
+				}
+				Headlight{
+					AttachObject = "MainBody";
+					SourceCoord = (-0.87, 1.35, 10.22);
+					Direction = (0.0, 0.0, 1.0);
+					MaxDistance = 10.0;
+					LensFlare{
+						StartAngle = 10.0;
+						Twinkle = 0.1;
+						Texture{
+							Distance = 0.0;
+							Radius = 0.2;
+							TexFileName = "../common_maki/oer5000/flare1.png";
+						}
+					}
+				}
+				Headlight{
+					AttachObject = "MainBody";
+					SourceCoord = (0.87, 1.35, 10.22);
+					Direction = (0.0, 0.0, 1.0);
+					MaxDistance = 10.0;
+				}
+			}
+		Case 1:
+			If !"_FRONT"{
+				Headlight{
+					AttachObject = "MainBody";
+					SourceCoord = (-0.80, 1.32, 10.22);
+					Direction = (0.0, 0.0, 1.0);
+					MaxDistance = 30.0;
+					LensFlare{
+						StartAngle = 25.0;
+						Twinkle = 0.1;
+						Texture{
+							Distance = 0.0;
+							Radius = 0.25;
+							TexFileName = "../common_maki/oer5000/flare2.png";
+						}
+					}
+				}
+				Headlight{
+					AttachObject = "MainBody";
+					SourceCoord = (0.80, 1.32, 10.22);
+					Direction = (0.0, 0.0, 1.0);
+					MaxDistance = 30.0;
+				}
+				Headlight{
+					AttachObject = "MainBody";
+					SourceCoord = (-0.80, 1.32, 10.22);
+					Direction = (0.0, 0.0, 1.0);
+					MaxDistance = 10.0;
+					LensFlare{
+						StartAngle = 10.0;
+						Twinkle = 0.1;
+						Texture{
+							Distance = 0.0;
+							Radius = 0.2;
+							TexFileName = "../common_maki/oer5000/flare1.png";
+						}
+					}
+				}
+				Headlight{
+					AttachObject = "MainBody";
+					SourceCoord = (0.80, 1.32, 10.22);
+					Direction = (0.0, 0.0, 1.0);
+					MaxDistance = 10.0;
+				}
+			}
+		}
+	}
+
+//サウンド
+	If !"サウンド"{
+		If "電源(パンタグラフ)"{
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/loop.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, 0.0, 0.0);
+			Loop = yes;
+			}
+		}
+		If "_ACCEL" > 0 & "_VELOCITY" < 10{
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/brake.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, 0.0);
+			Loop = no;
+			}
+		}
+
+		If "_ACCEL" > 0 & "_VELOCITY" < 60{
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/motor1.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, 0.0);
+			Loop = no;
+	  	      }
+		}
+
+		If "_ACCEL" < 0.01{
+			If "_VELOCITY" > 0 & "_VELOCITY" <= 10{
+				SoundEffect{
+				WaveFileName = "../common_maki/oer5000/sound/motor2.wav";
+				AttachObject = "Dummy";
+				SourceCoord = (0.0, -1.0, 0.0);
+				Loop = yes;
+				}
+			}
+
+			If "_VELOCITY" > 10 & "_VELOCITY" <= 30{
+				SoundEffect{
+				WaveFileName = "../common_maki/oer5000/sound/motor3.wav";
+				AttachObject = "Dummy";
+				SourceCoord = (0.0, -1.0, 0.0);
+				Loop = yes;
+				}
+			}
+
+			If "_VELOCITY" > 30 & "_VELOCITY" <= 45{
+				SoundEffect{
+				WaveFileName = "../common_maki/oer5000/sound/motor4.wav";
+				AttachObject = "Dummy";
+				SourceCoord = (0.0, -1.0, 0.0);
+				Loop = yes;
+				}
+			}
+
+			If "_VELOCITY" > 45 & "_VELOCITY" <= 60{
+				SoundEffect{
+				WaveFileName = "../common_maki/oer5000/sound/motor5.wav";
+				AttachObject = "Dummy";
+				SourceCoord = (0.0, -1.0, 0.0);
+				Loop = yes;
+				}
+			}
+
+			If "_VELOCITY" > 60 & "_VELOCITY" <= 75{
+				SoundEffect{
+				WaveFileName = "../common_maki/oer5000/sound/motor6.wav";
+				AttachObject = "Dummy";
+				SourceCoord = (0.0, -1.0, 0.0);
+				Loop = yes;
+				}
+			}
+		}
+
+		If "_VELOCITY" > 7 & "_VELOCITY" <= 25{
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_40.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, 7.0);
+			Volume = -500;
+			Loop = yes;
+			}
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_40.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, -7.0);
+			Volume = -500;
+			Loop = yes;
+			}
+		}
+
+		If "_VELOCITY" > 25 & "_VELOCITY" <= 40{
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_40.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, 7.0);
+			Loop = yes;
+			}
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_40.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, -7.0);
+			Loop = yes;
+			}
+		}
+
+		If "_VELOCITY" > 40 & "_VELOCITY" <= 55{
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_60.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, 7.0);
+			Loop = yes;
+			}
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_60.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, -7.0);
+			Loop = yes;
+			}
+		}
+
+		If "_VELOCITY" > 55 & "_VELOCITY" <= 80{
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_70.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, 7.0);
+			Loop = yes;
+			}
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_70.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, -7.0);
+			Loop = yes;
+			}
+		}
+
+		If "_VELOCITY" > 80{
+		If "_CABINVIEW"{
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_90.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, 7.0);
+			Loop = yes;
+			}
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_90.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, -7.0);
+			Loop = yes;
+			}
+			}Else{
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_wheel.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, 7.0);
+			Loop = yes;
+			}
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/run_wheel.wav";
+			AttachObject = "Dummy";
+			SourceCoord = (0.0, -1.0, -7.0);
+			Loop = yes;
+			}
+		}
+		}
+
+		If "_DOOR1"||"ドア"==3||("号車"==0&&"ドア"==2)||("号車">=1&&"ドア"==1){
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/dooropen.wav";
+			AttachObject = "DoorSoundL";
+			SourceCoord = (0.0, 0.0, 0.0);
+			Loop = no;
+			}
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/blind.wav";
+			AttachObject = "DoorSoundL";
+			SourceCoord = (0.0, 0.0, 0.0);
+			Loop = yes;
+			}
+		}Else{
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/doorclose.wav";
+			AttachObject = "DoorSoundL";
+			SourceCoord = (0.0, 0.0, 0.0);
+			Loop = no;
+			}
+		}
+
+		If "_DOOR2"||"ドア"==3||("号車"==0&&"ドア"==1)||("号車">=1&&"ドア"==2){
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/dooropen.wav";
+			AttachObject = "DoorSoundR";
+			SourceCoord = (0.0, 0.0, 0.0);
+			Loop = no;
+			}
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/blind.wav";
+			AttachObject = "DoorSoundR";
+			SourceCoord = (0.0, 0.0, 0.0);
+			Loop = yes;
+			}
+		}Else{
+			SoundEffect{
+			WaveFileName = "../common_maki/oer5000/sound/doorclose.wav";
+			AttachObject = "DoorSoundR";
+			SourceCoord = (0.0, 0.0, 0.0);
+			Loop = no;
+			}
+		}
+	}
+
+	FrontCabin{
+		Joint3D "MainBody"{
+			AttachCoord =(-0.8, 2.4, 8.7);
+			DirLink = "MainBody";
+			AttachDir = (0.0, 0.0, 1.0);
+		}
+	}
+
+}

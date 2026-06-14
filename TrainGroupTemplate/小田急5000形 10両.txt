@@ -1,0 +1,67 @@
+DatafileHeader{
+	RailSimVersion = 2.15;
+	DatafileType = TrainGroupTemplate;
+}
+
+TrainGroupTemplate{
+	TrainTemplate{
+		TrainPlugin = "maki_oer5000n_1";
+		Reverse = no;
+		SwitchNum = 20;
+		SwitchOption = 0, 1, 0, 0, 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
+	TrainTemplate{
+		TrainPlugin = "maki_oer5000n_2";
+		Reverse = no;
+		SwitchNum = 20;
+		SwitchOption = 0, 1, 0, 0, 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
+	TrainTemplate{
+		TrainPlugin = "maki_oer5000n_2";
+		Reverse = no;
+		SwitchNum = 20;
+		SwitchOption = 0, 1, 0, 0, 1, 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
+	TrainTemplate{
+		TrainPlugin = "maki_oer5000n_2";
+		Reverse = no;
+		SwitchNum = 20;
+		SwitchOption = 0, 1, 0, 0, 1, 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
+	TrainTemplate{
+		TrainPlugin = "maki_oer5000n_2";
+		Reverse = no;
+		SwitchNum = 20;
+		SwitchOption = 0, 1, 0, 0, 2, 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
+	TrainTemplate{
+		TrainPlugin = "maki_oer5000n_2";
+		Reverse = no;
+		SwitchNum = 20;
+		SwitchOption = 0, 1, 0, 0, 3, 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
+	TrainTemplate{
+		TrainPlugin = "maki_oer5000n_2";
+		Reverse = no;
+		SwitchNum = 20;
+		SwitchOption = 0, 1, 0, 0, 4, 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
+	TrainTemplate{
+		TrainPlugin = "maki_oer5000n_2";
+		Reverse = no;
+		SwitchNum = 20;
+		SwitchOption = 0, 1, 0, 0, 5, 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
+	TrainTemplate{
+		TrainPlugin = "maki_oer5000n_2";
+		Reverse = no;
+		SwitchNum = 20;
+		SwitchOption = 0, 1, 0, 0, 7, 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
+	TrainTemplate{
+		TrainPlugin = "maki_oer5000n_1";
+		Reverse = yes;
+		SwitchNum = 20;
+		SwitchOption = 0, 1, 0, 0, 1, 0, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
+}
